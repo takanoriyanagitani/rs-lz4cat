@@ -1,0 +1,28 @@
+[package]
+name = "rs-lz4cat"
+version = "0.1.0"
+edition = "2021"
+
+[lints.rust]
+unsafe_code = "forbid"
+
+[lints.clippy]
+unwrap_used = "forbid"
+
+[profile.release-wasi]
+inherits = "release"
+lto = true
+strip = true
+opt-level = 2
+codegen-units = 16
+
+[dependencies.lz4_flex]
+version = "0.11.3"
+default-features = false
+features = [
+	"frame",
+	"std",
+
+	"safe-encode",
+	"safe-decode",
+]
